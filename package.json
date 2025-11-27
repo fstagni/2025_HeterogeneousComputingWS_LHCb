@@ -1,0 +1,29 @@
+{
+  "name": "2025_HeterogeneousComputingWS_LHCb",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "slidev build --download",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fstagni/2025_.HeterogeneousComputingWS_LHCb.git"
+  },
+  "keywords": [
+    "LHCb",
+    "WLCG",
+    "Heterogeneous",
+    "Computing"
+  ],
+  "author": "Federico Stagni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fstagni/2025_HeterogeneousComputingWS_LHCb/issues"
+  },
+  "homepage": "https://github.com/fstagni/2025_HeterogeneousComputingWS_LHCb/readme",
+  "description": "",
+  "dependencies": {
+    "slidev-theme-neversink": "^0.4.0"
+  }
+}
