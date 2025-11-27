@@ -48,7 +48,7 @@ Several questions:
 ---
 layout: top-title
 color: gray-light
-align: c
+align: cm
 title: What
 ---
 
@@ -70,11 +70,23 @@ Trying to fill up the table below:
 
 
 ---
+layout: top-title
+color: gray-light
+align: c
+title: onlineoffline
+---
+
+:: title ::
+
+# Online and offline
+
+:: content ::
+
+---
 layout: top-title-two-cols
 color: gray-light
 align: c-lm-lm
 title: Grid
-columns: is-7
 ---
 
 :: title ::
@@ -99,6 +111,45 @@ With the exception of few queues from WLCG sites, all of them are `amd64` CPUs, 
 
 usual plots
 
+---
+layout: top-title
+color: gray-light
+align: c
+title: predictions
+---
+
+:: title ::
+
+# Predictions
+
+:: content ::
+
+
+
+---
+layout: top-title-two-cols
+color: gray-light
+align: c-lm-lm
+title: ARM
+columns: is-7
+---
+
+:: title ::
+
+# "the easy one": ARM64
+
+:: left ::
+
+![](/public/images/ARM_DPopov_090925.png)
+
+![](/public/images/Gauss_ARM.png)
+
+
+:: right ::
+
+- LHCb started exploiting (few) ARM queues, still in an opportunistic way
+- Dirac(X) support is basically *done* (minor caveats)
+
 
 ---
 layout: top-title
@@ -117,11 +168,11 @@ In summary:
 
 |                       | **LHCb software readyness** | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
 |:--------------------- |:--------------------------- |:---------------------------------------------------- |:----------------------------------- |
-| **ARM CPUs**          |                             |                                                      |                                     |
-| **GPUs (which ones)** |                             |                                                      |                                     |
-| **Quantum**           |                             |                                                      |                                     |
-| **RiscV**             |                             |                                                      |                                     |
-| **TPUs/NPUs/FPGA**    |                             |                                                      |                                     |
+| **ARM CPUs**          | Ready                       | via WLCG                                             | Ready                               |
+| **GPUs (which ones?)**| Ongoing                     |                                                      | Not ready                           |
+| **Quantum**           | Exploring                   |                                                      | Not planned                         |
+| **RiscV**             |                             |                                                      | Not planned                         |
+| **TPUs/NPUs/FPGA**    |                             |                                                      | Not planned                         |
 
 
 ---
@@ -160,4 +211,3 @@ title: Backup
 ---
 
 # Backup
-
