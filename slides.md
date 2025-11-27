@@ -9,7 +9,7 @@ theme: neversink
 neversink_string: "Heterogeneous Architectures in WLCG" 
 ---
 
-# LHCb
+# <img id="DiracX" src="/public/images/LHCb.png" class="mx-auto w-1/5"> </img>
 
 **Federico Stagni** <Email v="federico.stagni@cern.ch" />
 
@@ -21,15 +21,107 @@ neversink_string: "Heterogeneous Architectures in WLCG"
 layout: top-title
 color: gray-light
 align: c
+title: Heterogeneity
+---
+
+:: title ::
+
+# "Heterogeneity"
+
+:: content ::
+
+WLCG has been (and largely still is) about connecting "sites" with vastly homogeneous architectures: right now x86_64 (amd64) CPUs, but "in the beginning" we still had i386.
+Experiments like LHCb created a collection of highly specialized software for such architectures.
+
+Nowadays:
+- LHCb, "like everyone", is looking for SW speedups. Some specialized, "heterogeneous" hardware is being explored.
+- At the same time, Heterogeneous HW seems "inevitable" (as we well know, "the Grid is not anymore the Grid")
+
+Several questions:
+- Which PU architectures is LHCb *actually* exploring?
+- How far is LHCb from *actually using* them? 
+- Can WLCG help? (or, even before, need to care about it)
+
+- Which **new** problems will we (LHCb, WCLG) face?
+
+
+---
+layout: top-title
+color: gray-light
+align: c
 title: What
 ---
 
 :: title ::
 
-# 
+# Schematically
 
 :: content ::
 
+Trying to fill up the table below:
+
+|                       | **LHCb software readyness** | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
+|:--------------------- |:--------------------------- |:---------------------------------------------------- |:----------------------------------- |
+| **ARM CPUs**          |                             |                                                      |                                     |
+| **GPUs (which ones)** |                             |                                                      |                                     |
+| **Quantum**           |                             |                                                      |                                     |
+| **RiscV**             |                             |                                                      |                                     |
+| **TPUs/NPUs/FPGA**    |                             |                                                      |                                     |
+
+
+---
+layout: top-title-two-cols
+color: gray-light
+align: c-lm-lm
+title: Grid
+columns: is-7
+---
+
+:: title ::
+
+# Reminders on LHCb's Grid
+
+:: left ::
+
+**LHCb exploits, via Dirac(+X):**
+- WLCG computing resources (HTC) that are pledging to LHCb, plus a small fraction that is exploited opportunistically
+- HPCs:
+  - CSCS (an HPC masqueraded as a WLCG HTC site)
+  - MareNostrum
+  - SDumont
+  - a small HPC in Costa Rica
+  - VEGA (almost)
+- LHCb's HLT2 farm
+
+With the exception of few queues from WLCG sites, all of them are `amd64` CPUs, with "enough" RAM
+
+:: right ::
+
+usual plots
+
+
+---
+layout: top-title
+color: gray-light
+align: c
+title: Summary
+---
+
+:: title ::
+
+# Summary
+
+:: content ::
+
+In summary:
+
+|                       | **LHCb software readyness** | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
+|:--------------------- |:--------------------------- |:---------------------------------------------------- |:----------------------------------- |
+| **ARM CPUs**          |                             |                                                      |                                     |
+| **GPUs (which ones)** |                             |                                                      |                                     |
+| **Quantum**           |                             |                                                      |                                     |
+| **RiscV**             |                             |                                                      |                                     |
+| **TPUs/NPUs/FPGA**    |                             |                                                      |                                     |
 
 
 ---
@@ -42,33 +134,12 @@ title: credits/people
 
 <div class="grid text-size-4 grid-cols-3 w-3/4 gap-y-10 auto-rows-min ml-auto mr-auto">
     <div class="grid-item text-center mr-0- col-span-3">
-        <strong>People</strong><br>
-    </div>
-    <div class="grid-item text-right mr-4 col-span-1">
-        <strong>Current Developers, maintainers, supporters</strong>
+        <strong>Helpers</strong><br>
     </div>
     <div class="grid-item col-span-2">
-        Chris Burr <i>CERN, LHCb</i><br/>
-        Christophe Haen <i>CERN, LHCb</i><br/>
-        Alexandre Boyer <i>CERN, LHCb</i><br/>
-        Natthan Piggoux <i>LUPM (FR), CTA</i><br/>
-        Cedric Serfon <i>Brookhaven National Laboratory (US), Belle2</i><br/>
-        Ryunosuke O'Neil <i>CERN, LHCb</i><br/>
-        Daniela Bauer <i>Imperial college (UK), GridPP</i><br/>
-        Simon Fayer <i>Imperial college (UK), GridPP</i><br/>
-        Janusz Martyniak <i>Imperial college (UK), GridPP</i><br/>
-        Xiaomei Zhang <i>Beijing, Inst. High Energy Phys. (CN), Juno</i><br/>
-        Luisa Arrabito <i>LUPM (FR), CTA</i><br/>
-        André Sailer <i>CERN</i><br/>
-        Jorge Lisa Laborda <i>Univ. of Valencia and CSIC (ES), LHCb</i><br/>
-        Bertrand Rigaud <i>IN2P3 (FR)</i>
-    </div>
-    <div class="grid-item text-right mr-4 col-span-1">
-        <strong>Project lead</strong>
-    </div>
-    <div class="grid-item col-span-2">
-        Federico Stagni <i>CERN, LHCb</i><br/>
-        Andrei Tsaregorotsev <i>CPPM (FR), EGI and LHCb</i>
+        Ben Couturier <i>CERN, LHCb</i><br/>
+        Andrea Valassi <i>CERN, LHCb</i><br/>
+        Nicole <i></i>
     </div>
 </div>
 
