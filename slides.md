@@ -78,9 +78,9 @@ title: grid_reminders
 # What we have, and what we'll need
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: gray-light
-align: c
+align: c-lm-lm
 title: onlineoffline
 ---
 
@@ -88,7 +88,14 @@ title: onlineoffline
 
 # Online and offline
 
-:: content ::
+:: left ::
+
+![](/public/images/online.png)
+
+:: right ::
+
+![](/public/images/offline.png)
+
 
 ---
 layout: top-title-two-cols
@@ -124,6 +131,7 @@ layout: top-title-two-cols
 color: gray-light
 align: c-cm-lm
 title: predictions
+columns: is-8
 ---
 
 :: title ::
@@ -133,6 +141,8 @@ title: predictions
 :: left ::
 
 ![](/public/images/events_to_be_simulated.png)
+
+![](/public/images/Simu_run5.png)
 
 :: right ::
 
@@ -164,19 +174,22 @@ title: ongoingwork
 
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: gray-light
-align: c
+align: c-lm-lm
 title: gauss
+columns: is-8
 ---
 
 :: title ::
 
 # Gauss, the LHCb simulation software
 
-:: content ::
+:: left ::
 
 <img src="/public/images/Gauss_architecture.png" alt="Gauss" width="600"/>
+
+:: right ::
 
 "Gaussino" contains experiment-independent core elements. It is the ideal test-bed for new developments.
 
@@ -278,7 +291,7 @@ layout: top-title-two-cols
 color: gray-light
 align: c-lm-cm
 title: fastFlashSim
-columns: is-5
+columns: is-4
 ---
 
 :: title ::
@@ -408,45 +421,19 @@ title: ML
 
 :: title ::
 
-# ML training
+# ML training on the Grid? (an aside)
 
 :: content ::
 
 FIXME
 
+Up to now, all ML training have been done outside of the Grid. Will we need, at some point, to use it?
+
 A topic that needs study
 
-at first it does not seem to fit in our model (which is of course everyone's model). Still, maybe (?) ML training scripts can be wrapped as batch jobs just like we do, and inputs read via the usual protocols. I suspect the issues would come:
+at first it does not seem to fit in our model of jobs-with-inputs (which is of course everyone's model). Still, maybe (?) ML training scripts can be wrapped as batch jobs just like we do, and inputs read via the usual protocols. I suspect the issues would come:
 - Because of the scale of inputs
 - GPU nodes interconnection which is something that happens for ML training but never for us (e.g. we do not use MPI...)
-
----
-layout: top-title-two-cols
-color: gray-light
-align: c-lm-lm
-title: risks
----
-
-:: title ::
-
-# Risk
-
-:: left ::
-
-![](/public/images/risks.png)
-
-:: right ::
-
-## Economic models?
-
-What if we are just given a "credit card"?
-- and then we buy from clouds the resources we need (those not pledged/guaranteed)?
-
-![](/public/images/eco_model.png)
-
---> in order to save money, the WMS (DiracX) would need to implement economic models
-not very different, conceptually, from implementing green computing models.
-
 
 ---
 layout: top-title
@@ -489,7 +476,8 @@ title: credits/people
         Gloria Corti <i>CERN</i><br/>
         Ben Couturier <i>CERN</i><br/>
         Nicole Skidmore <i>University of Warwick</i><br/>
-        Andrea Valassi <i>CERN</i>
+        Andrea Valassi <i>CERN</i><br/>
+        Many others from which I stole slides</i>
     </div>
 </div>
 
@@ -510,3 +498,30 @@ title: Backup
 ---
 
 # Backup
+
+---
+layout: top-title-two-cols
+color: gray-light
+align: c-lm-lm
+title: risks
+---
+
+:: title ::
+
+# Risks
+
+:: left ::
+
+There are risks:
+
+![](/public/images/risks.png)
+
+:: right ::
+
+What if we are just given a "credit card"?
+- and then we buy from clouds the resources we need (those not pledged/guaranteed)?
+
+![](/public/images/eco_model.png)
+
+--> in order to save money, the WMS (DiracX) would need to implement economic models
+not very different, conceptually, from implementing green computing models.
