@@ -141,8 +141,22 @@ FIXME: plots from Conc
 &nbsp;
 
 <Admonition title="Key takeaway" color="teal-light" width="400px">
-Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid, so this presentation focus on the Simulation SW: Gauss.
+Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid, so, when talking about heterogeneous architectures, we can't avoid asking: where will we be able to run **Gauss**, the LHCb Simulation SW?
 </Admonition>
+
+
+---
+layout: section
+color: cyan
+title: ongoingwork
+---
+
+# LHCb software and non-amd64 PUs
+
+### ARM
+### GPUs (and which ones)
+### Quantum
+### TPUs/NPUs/FPGA
 
 
 ---
@@ -165,20 +179,6 @@ title: gauss
 - "Gaussino" contains experiment-independent core elements. It is the ideal test-bed for new developments.
 - **Pythia** is the generator used nowadays for 90%+ of the production requests. Will likely stay the same in the future. [FIXME]
 - 
-
-
----
-layout: section
-color: cyan
-title: ongoingwork
----
-
-# LHCb software and non-amd64 PUs
-
-### ARM
-### GPUs (and which ones)
-### Quantum
-### TPUs/NPUs/FPGA
 
 
 ---
@@ -385,6 +385,34 @@ at first it does not seem to fit in our model (which is of course everyone's mod
 - GPU nodes interconnection which is something that happens for ML training but never for us (e.g. we do not use MPI...)
 
 ---
+layout: top-title-two-cols
+color: gray-light
+align: c-lm-lm
+title: risks
+---
+
+:: title ::
+
+# Risk
+
+:: left ::
+
+![](/public/images/risks.png)
+
+:: right ::
+
+## Economic models?
+
+What if we are just given a "credit card"?
+- and then we buy from clouds the resources we need (those not pledged/guaranteed)?
+
+![](/public/images/eco_model.png)
+
+--> in order to save money, the WMS (DiracX) would need to implement economic models
+not very different, conceptually, from implementing green computing models.
+
+
+---
 layout: top-title
 color: gray-light
 align: c
@@ -420,11 +448,11 @@ title: credits/people
         <strong>Colleagues that helped in putting these slides together</strong><br>
     </div>
     <div class="grid-item col-span-2">
-        Ben Couturier <i>CERN</i><br/>
-        Gloria Corti <i>CERN</i><br/>
         Concezio Bozzi <i>INFN Ferrara</i><br/>
-        Andrea Valassi <i>CERN</i><br/>
-        Nicole Skidmore <i>University of Warwick</i>
+        Gloria Corti <i>CERN</i><br/>
+        Ben Couturier <i>CERN</i><br/>
+        Nicole Skidmore <i>University of Warwick</i><br/>
+        Andrea Valassi <i>CERN</i>
     </div>
 </div>
 
