@@ -113,7 +113,7 @@ title: Grid
   - VEGA (almost)
 - LHCb's HLT2 farm
 
-With the exception of few queues from WLCG sites, all of them are `amd64` CPUs, with "enough" RAM
+With the exception of few queues from WLCG sites, all of them are `amd64` CPUs, with "enough" RAM.
 
 :: right ::
 
@@ -122,7 +122,7 @@ FIXME: usual plots
 ---
 layout: top-title-two-cols
 color: gray-light
-align: c-lm-cm
+align: c-cm-lm
 title: predictions
 ---
 
@@ -132,7 +132,7 @@ title: predictions
 
 :: left ::
 
-FIXME: plots from Conc
+![](/public/images/events_to_be_simulated.png)
 
 :: right ::
 
@@ -141,8 +141,12 @@ FIXME: plots from Conc
 &nbsp;
 
 <Admonition title="Key takeaway" color="teal-light" width="400px">
-Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid, so, when talking about heterogeneous architectures, we can't avoid asking: where will we be able to run **Gauss**, the LHCb Simulation SW?
+Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid
 </Admonition>
+
+When talking about heterogeneous architectures, we can't avoid asking ourselves: where will we be able to run Gauss, the LHCb Simulation SW?
+
+Even if general simulation is **not** a natural candidate for GPUs, as we shall see, they provide better performances for specific cases.
 
 
 ---
@@ -160,25 +164,22 @@ title: ongoingwork
 
 
 ---
-layout: top-title-two-cols
+layout: top-title
 color: gray-light
-align: c-cm-lm
+align: c
 title: gauss
 ---
 
 :: title ::
 
-# Gauss crash course
+# Gauss, the LHCb simulation software
 
-:: left ::
+:: content ::
 
-![](/public/images/Gauss_architecture.png)
+<img src="/public/images/Gauss_architecture.png" alt="Gauss" width="600"/>
 
-:: right ::
+"Gaussino" contains experiment-independent core elements. It is the ideal test-bed for new developments.
 
-- "Gaussino" contains experiment-independent core elements. It is the ideal test-bed for new developments.
-- **Pythia** is the generator used nowadays for 90%+ of the production requests. Will likely stay the same in the future. [FIXME]
-- 
 
 
 ---
@@ -191,7 +192,7 @@ columns: is-7
 
 :: title ::
 
-# Simulations on ARM64: "the easy one"
+# **Simulation**: ARM64, "the easy one"
 
 :: left ::
 
@@ -206,7 +207,7 @@ columns: is-7
 - There is still no sustained production load.
 - LHCb started exploiting (few) ARM queues, still in an opportunistic way.
 - Dirac(X) support is basically *done* (minor caveats).
-- --> will increase the load on WLCG ARM queues gradually in 2026.
+- LHCb will increase the load on WLCG ARM queues gradually in 2026.
 
 
 ---
@@ -218,19 +219,17 @@ title: GPUs-generators
 
 :: title ::
 
-# Simulation: using GPUs for generators
+# **Simulation**: using GPUs for generators
 
 :: left ::
 
-- **Pythia** does not plan nowadays a porting to GPUs.
-- **MadGraph** is something for which there’s ongoing work to integrate, but will represent a fraction of what will actually be used.
-- **Sherpa** is not used
+- **Pythia** is the generator used nowadays for 90%+ of the production requests. Will likely stay the same in the future. It does not plan nowadays a porting to GPUs.
+- **MadGraph** is something for which there’s ongoing work to integrate, but will represent a fraction of what will actually be used. Will still be used together with Pythia.
+- Other generators, like **Sherpa**, are also used for specific purposes.
 
 :: right ::
 
-## MadGraph
-
-Can be used for offloading calculations of matrix elements
+**MadGraph** can be used for offloading calculations of matrix elements
 
 ![](/public/images/madgraph.png)
 
@@ -238,34 +237,80 @@ Can be used for offloading calculations of matrix elements
 ---
 layout: top-title-two-cols
 color: gray-light
-align: c-lm-lm
+align: c-cm-lm
 title: GPUs-detector
 ---
 
 :: title ::
 
-# Simulation: using GPUs for detectors
+# **Simulation**: using GPUs for detectors
 
 :: left ::
 
+As we'll hear again in this WS:
+
+![](/public/images/Geant4-GPU.png)
+
 :: right ::
+
+LHCb and AdePT AdePT has made a big progress recently and can now run the full LHCb simulation with a perfect physics agreement. The speed up we are obtaining is 2.1x with respect to the standard Gauss and 1.7x with respect to to Gauss+G4HepEm on CPU.    
+
+LHCb is also interested in Optical Photons on GPUs, so we are favourably looking at what Celeritas is doing in that regard.
 
 
 ---
-layout: top-title-two-cols
+layout: top-title
 color: gray-light
-align: c-lm-lm
-title: fastFlashSim
+align: c
+title: fastSim
 ---
 
 :: title ::
 
-# Simulations: GPUs for fast and flash
+# **Simulation**: GPUs for ML for parametrization
+
+:: content :: 
+
+![](/public/images/Gauss_ML.png)
+
+---
+layout: top-title-two-cols
+color: gray-light
+align: c-lm-cm
+title: fastFlashSim
+columns: is-5
+---
+
+:: title ::
+
+# **Simulation**: GPUs for fast and flash simulations
 
 :: left ::
 
+**Lamarr** is a pipeline of ML-based modular parametrizations to replace both the simulation and reconstruction steps, for transforming generator-level particles into analysis-level reconstructed objects
+
 :: right ::
 
+![](/public/images/lamarr.png)
+
+
+---
+layout: top-title
+color: gray-light
+align: c
+title: whichGPUs
+---
+
+:: title ::
+
+# Which GPUs
+
+:: content ::
+
+- For AdePT, NVidia GPUs required (for the moment)
+  - Double precision needed. If only machine with single-precision GPUs available will need developemnt to used them
+- For ML: the market dominated by AI applications, so should not be a problem
+- For optical photons: Opticks is 100% NVidia bound but there are alternatives emerging
 
 ---
 layout: top-title-two-cols
@@ -277,21 +322,23 @@ columns: is-5
 
 :: title ::
 
-# Analysis: ARM, and GPUs
+# **Analysis**: ARM, and GPUs
 
 :: left ::
 
 Reminders:
 - LHCb makes use of *Analysis Productions* for centralised tupling
     - an analysis facility in themselves
-- Data volumes in run 4 will be similar to run 3 -> analysis workflows will likely be similar as well.
+- Data volumes in run 4 will be similar to run 3 --> analysis workflows will likely be similar as well.
+    - Run 5 is when things will likely change.
 
 :: right ::
 
-- `ARM64` will soon be used also for *Analysis Productions*
+- `ARM64` will soon be used also for *Analysis Productions*. 
 - Initiatives for ML-driven analysis exists within LHCb.
 - At the moment, there are no specific plans for centrally-managed APs requesting GPUs.
-- ML training, whenever will be requested (for analysis and not) will be pushed to the Grid.
+- ML training, whenever will be requested (for analysis and not) will likely need to be pushed to the Grid.
+    - LHCb at this moment can not make predictions on what will be its needs for training for analysis.
 
 
 ---
@@ -303,25 +350,13 @@ title: QC
 
 :: title ::
 
-# Analysis: Quantum Computing
+# Quantum Computing, other PUs
 
 :: content ::
 
-LHCb has a broad QC program with several institutes and publications. 
+LHCb has a broad QC program with several institutes and publications. Still, of course, experimental.
 
-
----
-layout: top-title
-color: gray-light
-align: c
-title: PU
----
-
-:: title ::
-
-# Other PUs
-
-:: content ::
+FPGA ...
 
 
 ---
@@ -337,11 +372,10 @@ title: sw-conclusions
 
 :: content ::
 
-FIXME
-
-- For simulations LHCb plans to offload calculations to GPUs. While doing so, the CPU waits. The processing efficiency will need to be calculated differently wrt to what we do now.
-- ML: higher GPU occupation?
-- 
+- On one side, **for simulations LHCb plans to offload certain calculations to GPUs. GPUs are treated as accelerators**.
+    - While doing so, the CPU waits (and the GPU waits to be given something to do).
+    - Clearly, the processing efficiency will need to be calculated differently wrt to what we do now.
+- Training on ML: higher GPU occupation?
 
 
 
@@ -361,6 +395,8 @@ title: dirac
 Full node scheduling
 
 Match-making for DiracX
+
+
 
 
 ---
@@ -427,12 +463,13 @@ title: Summary
 
 In summary:
 
-|                       | **LHCb software readyness**    | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
-|:--------------------- |:------------------------------ |:---------------------------------------------------- |:----------------------------------- |
-| **ARM CPUs**          | Ready                          | via WLCG                                             | Ready                               |
-| **GPUs (which ones?)**| Ongoing                        | LHCb-owned                                           | Not ready                           |
-| **Quantum**           | Exploring                      | "private"                                            | Not planned                         |
-| **TPUs/NPUs/FPGA**    | Specific applications, online  | LHCb-owned                                           | Not planned                         |
+|                               | **LHCb software readyness**    | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
+|:----------------------------- |:------------------------------ |:---------------------------------------------------- |:----------------------------------- |
+| **ARM CPUs**                  | Ready                          | via WLCG                                             | Ready                               |
+| **GPUs for Sim accelerators** | Ongoing                        | LHCb-owned, or via HPCs (opportunistically)          | Not ready                           |
+| **GPUs for ML**               | Ongoing                        | LHCb-owned, or via clouds                            | A very different paradigm           |
+| **Quantum**                   | Exploring                      | "private"                                            | Not planned                         |
+| **TPUs/NPUs/FPGA**            | Specific applications, online  | LHCb-owned                                           | Not planned                         |
 
 
 ---
