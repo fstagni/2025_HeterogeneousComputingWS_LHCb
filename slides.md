@@ -81,12 +81,13 @@ title: grid_reminders
 layout: top-title-two-cols
 color: gray-light
 align: c-lm-lm
-title: onlineoffline
+title: online
+columns: is-9
 ---
 
 :: title ::
 
-# Online and offline
+# Online, LHCb uses CPUs and GPUs
 
 :: left ::
 
@@ -94,44 +95,43 @@ title: onlineoffline
 
 :: right ::
 
-![](/public/images/offline.png)
+- HLT1 is fully on GPUs
+- HLT2 instead run on CPUs
 
 
 ---
 layout: top-title-two-cols
 color: gray-light
 align: c-lm-lm
-title: Grid
+title: offline
+columns: is-7
 ---
 
 :: title ::
 
-# Reminders on LHCb's Grid
+# Offline
 
 :: left ::
 
-**LHCb exploits, via Dirac(+X):**
-- WLCG computing resources (HTC) that are pledging to LHCb, plus a small fraction that is exploited opportunistically
-- HPCs:
-  - CSCS (an HPC masqueraded as a WLCG HTC site)
-  - MareNostrum
-  - SDumont
-  - a small HPC in Costa Rica
-  - VEGA (almost)
-- LHCb's HLT2 farm
+![](/public/images/offline.png)
 
-With the exception of few queues from WLCG sites, all of them are `amd64` CPUs, with "enough" RAM.
+All LHCb offline processes are done on CPUs
 
 :: right ::
 
-FIXME: usual plots
+- WLCG computing resources (HTC) that are pledging to LHCb, plus a small fraction that is exploited opportunistically
+- HPCs, opportunistically
+- LHCb's HLT2 farm
+
+With the exception of few queues from WLCG sites, all of them are `amd64` CPUs, with "enough" RAM/Core.
+
 
 ---
 layout: top-title-two-cols
 color: gray-light
 align: c-cm-lm
 title: predictions
-columns: is-8
+columns: is-9
 ---
 
 :: title ::
