@@ -37,7 +37,7 @@ Experiments like LHCb created a collection of highly specialized software for su
 
 Nowadays:
 - LHCb, "like everyone", is looking for SW speedups, also exploring "heterogeneous" hardware.
-- Heterogeneous HW which, at the same time, seems "inevitable"
+- Heterogeneous HW which, at the same time, seems "inevitable".
 
 Several questions:
 - Which non-amd64 PUs is LHCb *actually* exploring?
@@ -58,14 +58,43 @@ title: What
 # Trying to fill up the table below
 
 :: content ::
+<table>
+  <tr>
+    <td><strong></strong></td>
+    <td><strong>LHCb software readiness</strong></td>
+    <td><strong>resources readiness (availability to LHCb users)</strong></td>
+    <td><strong>distributed computing (Dirac+X)</strong></td>
+  </tr>
 
-|                       | **LHCb software readyness** | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
-|:--------------------- |:--------------------------- |:---------------------------------------------------- |:----------------------------------- |
-| **ARM CPUs**          |                             |                                                      |                                     |
-| **GPUs (which ones)** |                             |                                                      |                                     |
-| **Quantum**           |                             |                                                      |                                     |
-| **TPUs/NPUs/FPGA**    |                             |                                                      |                                     |
+  <tr>
+    <td><strong>Traditional CPUs: ARM and Risc-V</strong></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
 
+  <tr>
+    <td><strong>GPUs</strong></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td><strong>TPUs/NPUs/FPGA</strong></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td><strong>Quantum</strong></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+
+</table>
 
 ---
 layout: section
@@ -93,7 +122,9 @@ columns: is-9
 
 :: right ::
 
-LHCb has experience with non-`amd64` PUs, as HLT1 is fully on GPUs.
+LHCb has experience with non-`amd64` PUs, as HLT1 is fully on GPUs
+
+(still, the trigger software also runs offline, on CPUs)
 
 
 ---
@@ -157,13 +188,13 @@ title: predictions
 
 :: title ::
 
-# Predictions
+# Predictions (draft!)
 
 :: left ::
 
 ![](/public/images/events_to_be_simulated.png)
 
-<Admonition title="Key takeaway" color="teal-light" width="200px">
+<Admonition title="Key takeaway" color="teal-light" width="400px">
 Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid
 </Admonition>
 
@@ -345,7 +376,7 @@ title: whichGPUs
 :: content ::
 
 - For *AdePT*, **NVidia** GPUs required (for the moment)
-  - Double precision needed. If only machine with single-precision GPUs available will need developemnt to used them
+  - Double precision needed. If only machine with single-precision GPUs available will need development to used them
 - For *ML*: the market dominated by AI applications, so should not be a problem
 - For *optical photons*: Opticks is 100% **NVidia** bound but there are alternatives emerging
 
@@ -367,6 +398,7 @@ columns: is-5
 
 LHCb makes use of **Analysis Productions** for centralised tupling
 - an *analysis facility* in themselves
+
 Data volumes in run 4 will be similar to run 3, and analysis workflows will likely be similar as well.
 - Run 5 is when things will likely change.
 
@@ -374,7 +406,7 @@ Data volumes in run 4 will be similar to run 3, and analysis workflows will like
 
 &nbsp;
 
-- `ARM64` will soon be used also for *Analysis Productions*. 
+- `ARM64` will soon (in months) be used also for *Analysis Productions*. 
 - Initiatives for ML-driven analysis exists within LHCb.
 - At the moment, there are no specific plans for centrally-managed APs requesting GPUs.
 - ML training, whenever will be requested (for analysis and not) *might* need to be pushed to the Grid.
@@ -394,14 +426,14 @@ title: QC
 
 :: content ::
 
-LHCb has a broad QC program with several institutes and publications. Still, of course, experimental.
-
-There are also ongoing work on using FPGA.
+- **CPUs**: there are no current plans for RISC-V
+- **Quantum Computing**: LHCb has a broad QC program with several institutes and publications. Still, of course, experimental.
+- **FPGAs**: There are ongoing work on using FPGA, for the moment for specific cases online
 
 &nbsp;
 &nbsp;
 
-But, all of the above seems, nonetheless, "still too far" from WLCG.
+But, all of the above seems, nonetheless, "**still too far**" from WLCG.
 
 
 ---
@@ -418,8 +450,8 @@ title: sw-conclusions
 :: content ::
 
 - On one side, **for simulations** *LHCb plans to offload certain calculations to GPUs*: **GPUs are treated as accelerators**.
-    - While doing so, the CPU waits (and the GPU waits to be given something to do).
-    - **It means, IMHO, that heterogeneous nodes a-la HPCs will actually be welcome (while as of now, they are more like an annoyance)**
+    - We do not fully know how to balance the CPU/GPU loads.
+    - **It means, IMHO, that heterogeneous nodes a-la HPCs will actually be welcome**
     - Clearly, the processing efficiency will need to be calculated differently wrt to what we do now.
 - **Training on ML** is instead a rather "different beast". On one side, it has the chance of yielding higher GPU efficiency, but:
     - it is unclear if we'll even need to run ML "on the Grid" (how often do we need to re-train?)
@@ -436,9 +468,14 @@ title: dirac
 
 :: title ::
 
-# Scheduling for distributed computing
+# Distributed computing scheduling, for heterogeneous slots
 
 :: content ::
+
+Nowadays Dirac(X) can:
+- ask the CEs () for CPU slots (including `ARM64`). No GPUs.
+- Dirac(X) can take a node consisting of several CPUs and partition it, 
+
 
 Full node scheduling
 
@@ -463,8 +500,8 @@ title: Summary
 <table>
   <tr>
     <td><strong></strong></td>
-    <td><strong>LHCb software readyness</strong></td>
-    <td><strong>resources readyness (availability to LHCb users)</strong></td>
+    <td><strong>LHCb software readiness</strong></td>
+    <td><strong>resources readiness (availability to LHCb users)</strong></td>
     <td><strong>distributed computing (Dirac+X)</strong></td>
   </tr>
 
@@ -477,24 +514,16 @@ title: Summary
 
   <tr v-click>
     <td><strong>GPUs for Sim accelerators</strong></td>
-    <td>Ongoing</td>
+    <td>Ongoing. Needs double-precision GPUs.</td>
     <td>LHCb-owned, or via HPCs (opportunistically)</td>
-    <td>Not ready</td>
+    <td>Ongoing</td>
   </tr>
 
   <tr v-click>
     <td><strong>GPUs for ML</strong></td>
-    <td>Ongoing</td>
+    <td>Ongoing.</td>
     <td>LHCb-owned, or via clouds</td>
     <td>A very different paradigm</td>
-  </tr>
-
-  <!-- Rows shown immediately -->
-  <tr>
-    <td><strong>Quantum</strong></td>
-    <td>Exploring</td>
-    <td>"private"</td>
-    <td>Not planned</td>
   </tr>
 
   <tr>
@@ -503,6 +532,14 @@ title: Summary
     <td>LHCb-owned</td>
     <td>Not planned</td>
   </tr>
+
+  <tr>
+    <td><strong>Quantum</strong></td>
+    <td>Exploring</td>
+    <td>"private"</td>
+    <td>Not planned</td>
+  </tr>
+
 </table>
 
 
@@ -522,6 +559,7 @@ title: credits/people
         Concezio Bozzi <i>INFN Ferrara</i><br/>
         Gloria Corti <i>CERN</i><br/>
         Ben Couturier <i>CERN</i><br/>
+        Jan Van Eldik <i>CERN</i><br/>
         Nicole Skidmore <i>University of Warwick</i><br/>
         Andrea Valassi <i>CERN</i><br/>
         Many others from which I stole slides
@@ -545,6 +583,24 @@ title: Backup
 ---
 
 # Backup
+
+---
+layout: top-title
+color: gray-light
+align: c
+title: AfterSummary
+---
+
+:: title ::
+
+# Not for free
+
+:: content ::
+
+- the exploitation of heterogeneous architectures does not come for free: it is the result of R&D.
+- R&D can be done by experienced engineers, physicists and architects -- not by AI.
+    - Ensuring proper funding is therefore a must
+- WLCG experiments can not work in isolation. We welcome this workshop, and subsequent common **work**.
 
 ---
 layout: top-title
@@ -586,10 +642,10 @@ There are risks:
 
 :: right ::
 
-What if we are just given a "credit card"?
-- and then we buy from clouds the resources we need (those not pledged/guaranteed)?
+What if we could buy from clouds the resources we need (those not pledged/guaranteed)?
 
 ![](/public/images/eco_model.png)
 
---> in order to save money, the WMS (DiracX) would need to implement economic models
-not very different, conceptually, from implementing green computing models.
+--> in order to save money, the WMS (DiracX) would need to implement economic models (to keep the costs down).
+
+Not very different, conceptually, from implementing green computing models.
