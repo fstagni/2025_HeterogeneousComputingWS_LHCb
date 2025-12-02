@@ -460,13 +460,50 @@ title: Summary
 
 :: content ::
 
-|                               | **LHCb software readyness**    | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
-|:----------------------------- |:------------------------------ |:---------------------------------------------------- |:----------------------------------- |
-| **ARM CPUs**                  | Ready                          | via WLCG                                             | Ready                               |
-| **GPUs for Sim accelerators** | Ongoing                        | LHCb-owned, or via HPCs (opportunistically)          | Not ready                           |
-| **GPUs for ML**               | Ongoing                        | LHCb-owned, or via clouds                            | A very different paradigm           |
-| **Quantum**                   | Exploring                      | "private"                                            | Not planned                         |
-| **TPUs/NPUs/FPGA**            | Specific applications, online  | LHCb-owned                                           | Not planned                         |
+<table>
+  <tr>
+    <td><strong></strong></td>
+    <td><strong>LHCb software readyness</strong></td>
+    <td><strong>resources readyness (availability to LHCb users)</strong></td>
+    <td><strong>distributed computing (Dirac+X)</strong></td>
+  </tr>
+
+  <tr v-click>
+    <td><strong>ARM CPUs</strong></td>
+    <td>Ready</td>
+    <td>via WLCG</td>
+    <td>Ready</td>
+  </tr>
+
+  <tr v-click>
+    <td><strong>GPUs for Sim accelerators</strong></td>
+    <td>Ongoing</td>
+    <td>LHCb-owned, or via HPCs (opportunistically)</td>
+    <td>Not ready</td>
+  </tr>
+
+  <tr v-click>
+    <td><strong>GPUs for ML</strong></td>
+    <td>Ongoing</td>
+    <td>LHCb-owned, or via clouds</td>
+    <td>A very different paradigm</td>
+  </tr>
+
+  <!-- Rows shown immediately -->
+  <tr>
+    <td><strong>Quantum</strong></td>
+    <td>Exploring</td>
+    <td>"private"</td>
+    <td>Not planned</td>
+  </tr>
+
+  <tr>
+    <td><strong>TPUs/NPUs/FPGA</strong></td>
+    <td>Specific applications, online</td>
+    <td>LHCb-owned</td>
+    <td>Not planned</td>
+  </tr>
+</table>
 
 
 ---
