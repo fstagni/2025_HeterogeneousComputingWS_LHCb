@@ -9,7 +9,7 @@ theme: neversink
 neversink_string: "Heterogeneous Architectures in WLCG" 
 ---
 
-# <img id="DiracX" src="/public/images/LHCb.png" class="mx-auto w-2/5"> </img>
+# <img id="DiracX" src="/public/images/LHCb.jpg" class="mx-auto w-2/5"> </img>
 
 **Federico Stagni, deputy LHCb Computing PL** <Email v="federico.stagni@cern.ch" />
 On behalf of the LHCb collaboration
@@ -31,19 +31,18 @@ title: Heterogeneity
 
 :: content ::
 
-WLCG has been (and largely still is) about connecting "sites" with **vastly homogeneous architectures**: right now *x86_64* (*amd64*) **CPUs**.
+WLCG has been (and largely still is) about connecting "sites" with **vastly homogeneous architectures**: right now `x86_64` (`amd64`) **CPUs**.
 
 Experiments like LHCb created a collection of highly specialized software for such architecture.
 
-Nowadays:
-- LHCb, "like everyone", is looking for SW speedups, also exploring "heterogeneous" hardware.
-- Heterogeneous HW which, at the same time, seems "inevitable".
+Nowadays LHCb, "like everyone", is looking for SW speedups, also exploring "heterogeneous" hardware.
 
 Several questions:
-- Which non-amd64 PUs is LHCb *actually* exploring?
-- How far is LHCb from *actually using* them? 
+- Which non-`amd64` PUs is LHCb *actually* exploring? and how far from *actually using* them? 
 - Can WLCG help? (or, even before, need to care about it)
-- Which **new** problems will we (LHCb, WCLG) face?
+- Which **new problems** will we (LHCb, WLCG) face?
+
+Still: **heterogeneous architectures are an opportunity**.
 
 
 ---
@@ -62,12 +61,12 @@ title: What
   <tr>
     <td><strong></strong></td>
     <td><strong>LHCb software readiness</strong></td>
-    <td><strong>resources readiness (availability to LHCb users)</strong></td>
-    <td><strong>distributed computing (Dirac+X)</strong></td>
+    <td><strong>Resources readiness (availability to LHCb users)</strong></td>
+    <td><strong>Distributed computing (Dirac+X)</strong></td>
   </tr>
 
   <tr>
-    <td><strong>Traditional CPUs: ARM and Risc-V</strong></td>
+    <td><strong>CPUs: ARM and Risc-V</strong></td>
     <td></td>
     <td></td>
     <td></td>
@@ -118,11 +117,18 @@ columns: is-9
 
 :: left ::
 
-![](/public/images/online.png)
+<div class="relative">
+  <img src="/public/images/online.png" class="w-full" />
+
+  <div class="absolute bottom-0 left-0 text-xs text-gray-500">
+    Source: https://cds.cern.ch/record/2730181/
+  </div>
+</div>
+
 
 :: right ::
 
-LHCb has experience with non-`amd64` PUs, as HLT1 is fully on GPUs
+LHCb has experience with non-`amd64` PUs, as HLT1 is fully on GPUs -- via [Allen](https://cds.cern.ch/record/2713102)
 
 (still, the trigger software also runs offline, on CPUs)
 
@@ -141,7 +147,13 @@ columns: is-7
 
 :: left ::
 
-![](/public/images/offline.png)
+<div class="relative">
+  <img src="/public/images/offline.png" class="w-full" />
+
+  <div class="absolute bottom-0 right-0 text-xs text-gray-500">
+    Source: https://cds.cern.ch/record/2730181/
+  </div>
+</div>
 
 
 :: right ::
@@ -159,7 +171,6 @@ layout: top-title-two-cols
 color: gray-light
 align: c-cm-lm
 title: grid
-columns: is-8
 ---
 
 :: title ::
@@ -168,9 +179,11 @@ columns: is-8
 
 :: left ::
 
-**Grid usage in Q3**
+**Grid usage in Q3 and Q4**
 
-![](/public/images/Grid_Q3.png)
+![](/public/images/pie_grid_Q34.png)
+
+Dominated by Simulation!
 
 :: right ::
 
@@ -188,11 +201,17 @@ title: predictions
 
 :: title ::
 
-# Predictions (draft!)
+# Predictions
 
 :: left ::
 
-![](/public/images/events_to_be_simulated.png)
+<div class="relative">
+  <img src="/public/images/events_to_be_simulated.png" class="w-full" />
+
+  <div class="absolute top-0 left-0 text-xs text-gray-500">
+    !DRAFT!
+  </div>
+</div>
 
 <Admonition title="Key takeaway" color="teal-light" width="400px">
 Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid
@@ -200,7 +219,13 @@ Simulation is, and will likely stay, the largest consumer of processing cycles o
 
 :: right ::
 
-![](/public/images/Simu_run5.png)
+<div class="relative">
+  <img src="/public/images/Simu_run5.png" class="w-full" />
+
+  <div class="absolute top-0 left-0 text-xs text-gray-500">
+    !DRAFT!
+  </div>
+</div>
 
 When talking about heterogeneous architectures, we can't avoid asking ourselves: where will we be able to run Gauss, the LHCb Simulation SW?
 
@@ -242,8 +267,8 @@ columns: is-8
 Modular:
 
 - **Gaussino** contains experiment-independent core elements. It is the ideal test-bed for new developments.
-- **Pythia** is one of the generators
-- **Geant4** is not irreplaceble
+- **Pythia** is the main generator.
+- **Geant4** is not irreplaceble, but for some cases.
 
 
 
@@ -290,14 +315,19 @@ title: GPUs-generators
 
 - **Pythia** is the generator used nowadays for 90%+ of the production requests. Will likely stay the same in the future. It does not plan nowadays a porting to GPUs.
 - **MadGraph** is something for which there’s ongoing work to integrate, but will represent a fraction of what will actually be used. Will still be used together with Pythia.
-- Other generators, like **Sherpa**, are also used for specific purposes.
+- Other generators, like **EPOS**, are also used for specific purposes.
 
 :: right ::
 
 **MadGraph** can be used for offloading calculations of matrix elements
 
-![](/public/images/madgraph.png)
+<div class="relative">
+  <img src="/public/images/madgraph.png" class="w-full" />
 
+  <div class="absolute top-0 right-0 text-xs text-gray-500">
+    Source: https://indico.cern.ch/event/1338689/contributions/6015964/
+  </div>
+</div>
 
 ---
 layout: top-title-two-cols
@@ -317,11 +347,17 @@ As we'll hear again in this WS:
 &nbsp;
 
 
-![](/public/images/Geant4-GPU.png)
+<div class="relative">
+  <img src="/public/images/Geant4-GPU.png" class="w-full" />
+
+  <div class="absolute top-0 right-0 text-xs text-gray-500">
+    Source: G. Corti
+  </div>
+</div>
 
 :: right ::
 
-**AdePT** has made a big progress recently and can now run the full LHCb simulation with a perfect physics agreement. The speed up we are obtaining is 2.1x with respect to the standard Gauss and 1.7x with respect to Gauss+G4HepEm on CPU.
+**AdePT** has made big progress recently and the full LHCb simulation can now be run using it with an excellent physics agreement. The speed up obtained is 2.1x with respect to the standard Gauss and 1.7x with respect to to Gauss+G4HepEm on CPU.
 
 LHCb is also interested in Optical Photons on GPUs, so we are favourably looking at what **Celeritas** is doing in that regard.
 
@@ -339,7 +375,14 @@ title: fastSim
 
 :: content :: 
 
-![](/public/images/Gauss_ML.png)
+<div class="relative">
+  <img src="/public/images/Gauss_ML.png" class="w-full" />
+
+  <div class="absolute bottom-0 right-0 text-xs text-gray-500">
+    Source: Michał Mazurek, "ML in LHCb Simulation", Taipei LHCP 2025
+  </div>
+</div>
+
 
 ---
 layout: top-title-two-cols
@@ -359,7 +402,13 @@ columns: is-3
 
 :: right ::
 
-![](/public/images/lamarr.png)
+<div class="relative">
+  <img src="/public/images/lamarr.png" class="w-full" />
+
+  <div class="absolute bottom-0 right-0 text-xs text-gray-500">
+    Source: M Barbetti and L Anderlini, CHEP 2024
+  </div>
+</div>
 
 
 ---
@@ -378,7 +427,7 @@ title: whichGPUs
 - For *AdePT*, **NVidia** GPUs required (for the moment)
   - Double precision needed. If only machine with single-precision GPUs available will need development to used them
 - For *ML*: the market dominated by AI applications, so should not be a problem
-- For *optical photons*: Opticks is 100% **NVidia** bound but there are alternatives emerging
+- For *optical photons*: `Opticks` is 100% **NVidia** bound but there are alternatives emerging (`Mitsuba`, `Celeritas`)
 
 ---
 layout: top-title-two-cols
@@ -426,14 +475,19 @@ title: QC
 
 :: content ::
 
-- **CPUs**: there are no current plans for RISC-V
-- **Quantum Computing**: LHCb has a broad QC program with several institutes and publications. Still, of course, experimental.
-- **FPGAs**: There are ongoing work on using FPGA, for the moment for specific cases online
+- **CPUs**: there are no current plans for Risc-V (we'll follow the evolution).
+- **FPGAs**: Online, for specific use-cases.
+- **TPUs/NPUs**: Keeping an eye.
+- **Quantum Computing**: [broad QC program](https://indico.cern.ch/event/1519367/). Still, of course, experimental.
 
 &nbsp;
 &nbsp;
 
-But, all of the above seems, nonetheless, "**still too far**" from WLCG.
+
+<Admonition title="Not for now" color="orange-light" width="600px">
+But, all of the above seems, nonetheless, "still too far" from WLCG.
+</Admonition>
+
 
 
 ---
@@ -469,16 +523,40 @@ columns: is-5
 
 :: title ::
 
-# Distributed computing scheduling, for heterogeneous slots
+# DiracX and heterogeneous slots
 
 :: left ::
 
 - Nowadays *Dirac(X) can take a node consisting of several CPUs and partition it*. CPUs only.
 - The **match-making** process (the process of matching job needs to job slots capabilities) can use a very simple system for tagging slots including GPUs. This is not fully applicable for heterogeneous nodes.
 
-![](/public/images/diracx-logo-full-transparent-background.png)
-
 :: right ::
+
+Would not be able to fully exploit nodes like this:
+
+<div class="relative">
+  <img src="/public/images/lumig-overview.svg" class="w-full" />
+
+  <div class="absolute bottom-0 right-0 text-xs text-gray-500">
+    Source: https://docs.lumi-supercomputer.eu/hardware/lumig/
+  </div>
+</div>
+
+
+
+---
+layout: top-title-two-cols
+color: gray-light
+align: c-lm-lm
+title: diracx
+columns: is-5
+---
+
+:: title ::
+
+# DiracX and heterogeneous slots (cont)
+
+:: left :: 
 
 In the context of DiracX, LHCb is working on:
 
@@ -486,15 +564,19 @@ In the context of DiracX, LHCb is working on:
 
 ![](/public/images/CWL1.png)
 
+:: right ::
+
+![](/public/images/diracx-logo-full-transparent-background.png)
+
 - A realistic **slot description for heterogeneous architectures**
 - An advanced jobs match-making
 - "Solving" the general case of **whole node scheduling**.
 
 
 ---
-layout: top-title-two-cols
+layout: top-title
 color: gray-light
-align: c-lm-lm
+align: c
 title: WLCG
 ---
 
@@ -540,14 +622,14 @@ title: Summary
 
   <tr v-click>
     <td><strong>GPUs for Sim accelerators</strong></td>
-    <td>Ongoing. Needs double-precision GPUs.</td>
+    <td>Ongoing. Needs double-precision GPUs</td>
     <td>LHCb-owned, or via HPCs (opportunistically)</td>
     <td>Ongoing</td>
   </tr>
 
   <tr v-click>
     <td><strong>GPUs for ML</strong></td>
-    <td>Ongoing.</td>
+    <td>Ongoing</td>
     <td>LHCb-owned, or via clouds</td>
     <td>A very different paradigm</td>
   </tr>
