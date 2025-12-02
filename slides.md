@@ -55,11 +55,9 @@ title: What
 
 :: title ::
 
-# Schematically
+# Trying to fill up the table below
 
 :: content ::
-
-Trying to fill up the table below:
 
 |                       | **LHCb software readyness** | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
 |:--------------------- |:--------------------------- |:---------------------------------------------------- |:----------------------------------- |
@@ -95,7 +93,7 @@ columns: is-9
 
 :: right ::
 
-LHCb has experience with non-`amd64` PUs: HLT1 is fully on GPUs.
+LHCb has experience with non-`amd64` PUs, as HLT1 is fully on GPUs.
 
 
 ---
@@ -108,13 +106,12 @@ columns: is-7
 
 :: title ::
 
-# Offline
+# Offline, everything is on CPUs.
 
 :: left ::
 
 ![](/public/images/offline.png)
 
-...but offline, everything is on CPUs.
 
 :: right ::
 
@@ -131,7 +128,7 @@ layout: top-title-two-cols
 color: gray-light
 align: c-cm-lm
 title: grid
-columns: is-9
+columns: is-8
 ---
 
 :: title ::
@@ -140,7 +137,7 @@ columns: is-9
 
 :: left ::
 
-Grid usage in Q3
+**Grid usage in Q3**
 
 ![](/public/images/Grid_Q3.png)
 
@@ -156,7 +153,6 @@ layout: top-title-two-cols
 color: gray-light
 align: c-cm-lm
 title: predictions
-columns: is-9
 ---
 
 :: title ::
@@ -167,16 +163,13 @@ columns: is-9
 
 ![](/public/images/events_to_be_simulated.png)
 
-![](/public/images/Simu_run5.png)
-
-:: right ::
-
-&nbsp;
-&nbsp;
-
 <Admonition title="Key takeaway" color="teal-light" width="200px">
 Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid
 </Admonition>
+
+:: right ::
+
+![](/public/images/Simu_run5.png)
 
 When talking about heterogeneous architectures, we can't avoid asking ourselves: where will we be able to run Gauss, the LHCb Simulation SW?
 
@@ -215,7 +208,11 @@ columns: is-8
 
 :: right ::
 
-"Gaussino" contains experiment-independent core elements. It is the ideal test-bed for new developments.
+Modular:
+
+- **Gaussino** contains experiment-independent core elements. It is the ideal test-bed for new developments.
+- **Pythia** is one of the generators
+- **Geant4** is not irreplaceble
 
 
 
@@ -286,13 +283,16 @@ title: GPUs-detector
 
 As we'll hear again in this WS:
 
+&nbsp;
+
+
 ![](/public/images/Geant4-GPU.png)
 
 :: right ::
 
-AdePT has made a big progress recently and can now run the full LHCb simulation with a perfect physics agreement. The speed up we are obtaining is 2.1x with respect to the standard Gauss and 1.7x with respect to to Gauss+G4HepEm on CPU.    
+**AdePT** has made a big progress recently and can now run the full LHCb simulation with a perfect physics agreement. The speed up we are obtaining is 2.1x with respect to the standard Gauss and 1.7x with respect to Gauss+G4HepEm on CPU.
 
-LHCb is also interested in Optical Photons on GPUs, so we are favourably looking at what Celeritas is doing in that regard.
+LHCb is also interested in Optical Photons on GPUs, so we are favourably looking at what **Celeritas** is doing in that regard.
 
 
 ---
@@ -304,7 +304,7 @@ title: fastSim
 
 :: title ::
 
-# **Simulation**: GPUs for ML for parametrization
+# **Simulation**: GPUs for ML, for *fast* simulations
 
 :: content :: 
 
@@ -320,7 +320,7 @@ columns: is-3
 
 :: title ::
 
-# **Simulation**: GPUs for fast and flash simulations
+# **Simulation**: GPUs for *ultrafast* and *flash* simulations
 
 :: left ::
 
@@ -344,10 +344,10 @@ title: whichGPUs
 
 :: content ::
 
-- For AdePT, NVidia GPUs required (for the moment)
+- For *AdePT*, **NVidia** GPUs required (for the moment)
   - Double precision needed. If only machine with single-precision GPUs available will need developemnt to used them
-- For ML: the market dominated by AI applications, so should not be a problem
-- For optical photons: Opticks is 100% NVidia bound but there are alternatives emerging
+- For *ML*: the market dominated by AI applications, so should not be a problem
+- For *optical photons*: Opticks is 100% **NVidia** bound but there are alternatives emerging
 
 ---
 layout: top-title-two-cols
@@ -363,18 +363,22 @@ columns: is-5
 
 :: left ::
 
+&nbsp;
+
 LHCb makes use of **Analysis Productions** for centralised tupling
 - an *analysis facility* in themselves
-Data volumes in run 4 will be similar to run 3 --> analysis workflows will likely be similar as well.
+Data volumes in run 4 will be similar to run 3, and analysis workflows will likely be similar as well.
 - Run 5 is when things will likely change.
 
 :: right ::
 
+&nbsp;
+
 - `ARM64` will soon be used also for *Analysis Productions*. 
 - Initiatives for ML-driven analysis exists within LHCb.
 - At the moment, there are no specific plans for centrally-managed APs requesting GPUs.
-- ML training, whenever will be requested (for analysis and not) will likely need to be pushed to the Grid.
-    - LHCb at this moment can not make predictions on what will be its needs for training for analysis.
+- ML training, whenever will be requested (for analysis and not) *might* need to be pushed to the Grid.
+- *LHCb at this moment can not make predictions on what will be its needs for training for analysis.*
 
 
 ---
@@ -386,15 +390,18 @@ title: QC
 
 :: title ::
 
-# Quantum Computing, other PUs
+# Quantum Computing, other PUs?
 
 :: content ::
 
 LHCb has a broad QC program with several institutes and publications. Still, of course, experimental.
 
-FPGA ...
+There are also ongoing work on using FPGA.
 
-All of the above seem, nonetheless, "still too far" from WLCG.
+&nbsp;
+&nbsp;
+
+But, all of the above seems, nonetheless, "still too far" from WLCG.
 
 
 ---
@@ -410,12 +417,12 @@ title: sw-conclusions
 
 :: content ::
 
-- On one side, **for simulations LHCb plans to offload certain calculations to GPUs. GPUs are treated as accelerators**.
+- On one side, **for simulations** *LHCb plans to offload certain calculations to GPUs*: **GPUs are treated as accelerators**.
     - While doing so, the CPU waits (and the GPU waits to be given something to do).
-    - It means that heterogeneous nodes a-la HPCs will actually be needed (while as of now, they are more like an annoyance)
+    - **It means, IMHO, that heterogeneous nodes a-la HPCs will actually be welcome (while as of now, they are more like an annoyance)**
     - Clearly, the processing efficiency will need to be calculated differently wrt to what we do now.
 - **Training on ML** is instead a rather "different beast". On one side, it has the chance of yielding higher GPU efficiency, but:
-    - it is unclear if we'll even need to run ML "on the Grid" (how often do we need to re-train?). 
+    - it is unclear if we'll even need to run ML "on the Grid" (how often do we need to re-train?)
     - at first it does not seem to fit in our model of jobs-with-inputs (which is of course everyone's model)
 
 
@@ -452,8 +459,6 @@ title: Summary
 # Summary
 
 :: content ::
-
-In summary:
 
 |                               | **LHCb software readyness**    | **resources readyness (availability to LHCb users)** | **distributed computing (Dirac+X)** |
 |:----------------------------- |:------------------------------ |:---------------------------------------------------- |:----------------------------------- |
