@@ -95,8 +95,7 @@ columns: is-9
 
 :: right ::
 
-- HLT1 is fully on GPUs
-- HLT2 instead run on CPUs
+LHCb has experience with non-`amd64` PUs: HLT1 is fully on GPUs.
 
 
 ---
@@ -115,15 +114,41 @@ columns: is-7
 
 ![](/public/images/offline.png)
 
-All LHCb offline processes are done on CPUs
+...but offline, everything is on CPUs.
 
 :: right ::
 
 - WLCG computing resources (HTC) that are pledging to LHCb, plus a small fraction that is exploited opportunistically
 - HPCs, opportunistically
-- LHCb's HLT2 farm
+- LHCb's HLT2 farm (CPUs)
+  - ...HLT1 GPUs, eventually?
 
-With the exception of few queues from WLCG sites, all of them are `amd64` CPUs, with "enough" RAM/Core.
+With the exception of few `arm64` queues from WLCG sites, all of them are `amd64` CPUs, with "enough" RAM/Core.
+
+
+---
+layout: top-title-two-cols
+color: gray-light
+align: c-cm-lm
+title: grid
+columns: is-9
+---
+
+:: title ::
+
+# Simulations are CPU-hungry
+
+:: left ::
+
+Grid usage in Q3
+
+![](/public/images/Grid_Q3.png)
+
+:: right ::
+
+Using the HLT2 (CPU) farm whenever possible
+
+![](/public/images/running_peak.png)
 
 
 ---
@@ -148,9 +173,8 @@ columns: is-9
 
 &nbsp;
 &nbsp;
-&nbsp;
 
-<Admonition title="Key takeaway" color="teal-light" width="400px">
+<Admonition title="Key takeaway" color="teal-light" width="200px">
 Simulation is, and will likely stay, the largest consumer of processing cycles of LHCb Grid
 </Admonition>
 
@@ -266,7 +290,7 @@ As we'll hear again in this WS:
 
 :: right ::
 
-LHCb and AdePT AdePT has made a big progress recently and can now run the full LHCb simulation with a perfect physics agreement. The speed up we are obtaining is 2.1x with respect to the standard Gauss and 1.7x with respect to to Gauss+G4HepEm on CPU.    
+AdePT has made a big progress recently and can now run the full LHCb simulation with a perfect physics agreement. The speed up we are obtaining is 2.1x with respect to the standard Gauss and 1.7x with respect to to Gauss+G4HepEm on CPU.    
 
 LHCb is also interested in Optical Photons on GPUs, so we are favourably looking at what Celeritas is doing in that regard.
 
@@ -291,7 +315,7 @@ layout: top-title-two-cols
 color: gray-light
 align: c-lm-cm
 title: fastFlashSim
-columns: is-4
+columns: is-3
 ---
 
 :: title ::
@@ -339,11 +363,10 @@ columns: is-5
 
 :: left ::
 
-Reminders:
-- LHCb makes use of *Analysis Productions* for centralised tupling
-    - an analysis facility in themselves
-- Data volumes in run 4 will be similar to run 3 --> analysis workflows will likely be similar as well.
-    - Run 5 is when things will likely change.
+LHCb makes use of **Analysis Productions** for centralised tupling
+- an *analysis facility* in themselves
+Data volumes in run 4 will be similar to run 3 --> analysis workflows will likely be similar as well.
+- Run 5 is when things will likely change.
 
 :: right ::
 
@@ -371,6 +394,8 @@ LHCb has a broad QC program with several institutes and publications. Still, of 
 
 FPGA ...
 
+All of the above seem, nonetheless, "still too far" from WLCG.
+
 
 ---
 layout: top-title
@@ -387,8 +412,11 @@ title: sw-conclusions
 
 - On one side, **for simulations LHCb plans to offload certain calculations to GPUs. GPUs are treated as accelerators**.
     - While doing so, the CPU waits (and the GPU waits to be given something to do).
+    - It means that heterogeneous nodes a-la HPCs will actually be needed (while as of now, they are more like an annoyance)
     - Clearly, the processing efficiency will need to be calculated differently wrt to what we do now.
-- Training on ML: higher GPU occupation?
+- **Training on ML** is instead a rather "different beast". On one side, it has the chance of yielding higher GPU efficiency, but:
+    - it is unclear if we'll even need to run ML "on the Grid" (how often do we need to re-train?). 
+    - at first it does not seem to fit in our model of jobs-with-inputs (which is of course everyone's model)
 
 
 
@@ -411,29 +439,6 @@ Match-making for DiracX
 
 
 
-
----
-layout: top-title
-color: gray-light
-align: c
-title: ML
----
-
-:: title ::
-
-# ML training on the Grid? (an aside)
-
-:: content ::
-
-FIXME
-
-Up to now, all ML training have been done outside of the Grid. Will we need, at some point, to use it?
-
-A topic that needs study
-
-at first it does not seem to fit in our model of jobs-with-inputs (which is of course everyone's model). Still, maybe (?) ML training scripts can be wrapped as batch jobs just like we do, and inputs read via the usual protocols. I suspect the issues would come:
-- Because of the scale of inputs
-- GPU nodes interconnection which is something that happens for ML training but never for us (e.g. we do not use MPI...)
 
 ---
 layout: top-title
@@ -477,7 +482,7 @@ title: credits/people
         Ben Couturier <i>CERN</i><br/>
         Nicole Skidmore <i>University of Warwick</i><br/>
         Andrea Valassi <i>CERN</i><br/>
-        Many others from which I stole slides</i>
+        Many others from which I stole slides
     </div>
 </div>
 
@@ -498,6 +503,27 @@ title: Backup
 ---
 
 # Backup
+
+---
+layout: top-title
+color: gray-light
+align: c
+title: ML
+---
+
+:: title ::
+
+# ML training on the Grid? (an aside)
+
+:: content ::
+
+Up to now, all ML training have been done outside of the Grid. Will we need, at some point, to use it?
+
+A topic that needs study.
+
+At first it does not seem to fit in our model of jobs-with-inputs (which is of course everyone's model). Still, maybe (?) ML training scripts can be wrapped as batch jobs just like we do, and inputs read via the usual protocols. I suspect the issues would come:
+- Because of the scale of inputs
+- GPU nodes interconnection which is something that happens for ML training but never for us (e.g. we do not use MPI...)
 
 ---
 layout: top-title-two-cols
