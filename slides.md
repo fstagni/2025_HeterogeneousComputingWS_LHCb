@@ -460,28 +460,54 @@ title: sw-conclusions
 
 
 ---
-layout: top-title
+layout: top-title-two-cols
 color: gray-light
-align: c
+align: c-lm-lm
 title: dirac
+columns: is-5
 ---
 
 :: title ::
 
 # Distributed computing scheduling, for heterogeneous slots
 
+:: left ::
+
+- Nowadays *Dirac(X) can take a node consisting of several CPUs and partition it*. CPUs only.
+- The **match-making** process (the process of matching job needs to job slots capabilities) can use a very simple system for tagging slots including GPUs. This is not fully applicable for heterogeneous nodes.
+
+![](/public/images/diracx-logo-full-transparent-background.png)
+
+:: right ::
+
+In the context of DiracX, LHCb is working on:
+
+- Using CWL for jobs and workflow description
+
+![](/public/images/CWL1.png)
+
+- A realistic **slot description for heterogeneous architectures**
+- An advanced jobs match-making
+- "Solving" the general case of **whole node scheduling**.
+
+
+---
+layout: top-title-two-cols
+color: gray-light
+align: c-lm-lm
+title: WLCG
+---
+
+:: title ::
+
+# A collaborative work
+
 :: content ::
 
-Nowadays Dirac(X) can:
-- ask the CEs () for CPU slots (including `ARM64`). No GPUs.
-- Dirac(X) can take a node consisting of several CPUs and partition it, 
-
-
-Full node scheduling
-
-Match-making for DiracX
-
-
+- The exploitation of heterogeneous architectures does not come for free: it is the result of R&D.
+- R&D can be done by *experienced* engineers, physicists and architect: ensuring proper *funding* is therefore a must.
+- WLCG experiments can not work in isolation. We welcome this workshop, and subsequent common **work**.
+- I still think WLCG needs a proper information system.
 
 
 ---
@@ -584,23 +610,6 @@ title: Backup
 
 # Backup
 
----
-layout: top-title
-color: gray-light
-align: c
-title: AfterSummary
----
-
-:: title ::
-
-# Not for free
-
-:: content ::
-
-- the exploitation of heterogeneous architectures does not come for free: it is the result of R&D.
-- R&D can be done by experienced engineers, physicists and architects -- not by AI.
-    - Ensuring proper funding is therefore a must
-- WLCG experiments can not work in isolation. We welcome this workshop, and subsequent common **work**.
 
 ---
 layout: top-title
